@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo à InovaFácil</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Fundo com gradiente verde e azul */
+            background: linear-gradient(to bottom, #2b8c5a, #20417f);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
+        }
+        /* Estiliza os campos de input */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco levemente transparente */
+            color: #333; /* Cor do texto escura */
+            border-radius: 0.5rem; /* Bordas arredondadas */
+            padding: 0.75rem 1rem; /* Preenchimento interno */
+            width: 100%; /* Largura total */
+            border: none; /* Sem borda */
+            outline: none; /* Remove o contorno ao focar */
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus {
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Sombra azul ao focar */
+        }
+        /* Estiliza o botão de continuar */
+        .btn-continue {
+            background-color: white;
+            color: #20417f; /* Texto azul escuro */
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-continue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        /* Estiliza o contêiner principal do formulário */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.2); /* Fundo escuro transparente */
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+        }
+        /* Estiliza os rótulos dos campos */
+        .label-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        /* Estiliza o ícone de informação */
+        .info-icon {
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Bem-vindo à InovaFácil 💡</h1>
+        <p class="text-lg text-white opacity-80">Sua plataforma inteligente para proteger e inovar ideias.</p>
+    </header>
+
+    <hr class="w-full max-w-4xl border-t border-gray-400 opacity-50 mb-8">
+
+    <main class="form-container">
+        <h2 class="text-2xl font-semibold mb-2">Suas Informações</h2>
+        <p class="text-white opacity-80 mb-6">Por favor, preencha seus dados para continuar.</p>
+
+        <form>
+            <div class="mb-4">
+                <label for="nome" class="label-with-icon">
+                    <span class="info-icon">?</span> Nome completo:
+                </label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" class="w-full">
+            </div>
+
+            <div class="mb-4">
+                <label for="matricula" class="label-with-icon">
+                    <span class="info-icon">?</span> Matrícula (somente números):
+                </label>
+                <input type="number" id="matricula" name="matricula" placeholder="1234567" class="w-full">
+            </div>
+
+            <div class="mb-6">
+                <label for="email" class="label-with-icon">
+                    <span class="info-icon">?</span> Email:
+                </label>
+                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" class="w-full">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn-continue" onclick="event.preventDefault(); window.location.href='pagina_2_questionario.html';"></button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    Continuar
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InovaFácil - Questionário Rápido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Questionário Rápido</h1>
+        <p class="text-lg text-white opacity-80">Por favor, responda às perguntas abaixo para nos ajudar a entender melhor sua ideia. Suas respostas são cruciais para a análise.</p>
+    </header>
+
+    <main class="container">
+        <form id="questionnaireForm">
+            <section class="mb-8">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="info-icon">?</span> Natureza da Ideia
+                </h3>
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Sua ideia é apenas um algoritmo isolado ou método matemático?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza1_sim" name="Natureza da Ideia - Algoritmo/Metodo Matematico" value="Sim" required>
+                        <label for="natureza1_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza1_nao" name="Natureza da Ideia - Algoritmo/Metodo Matematico" value="Não">
+                        <label for="natureza1_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Sua ideia consiste em uma metodologia de ensino, gestão, negócios ou tratamento?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza2_sim" name="Natureza da Ideia - Metodologia (Ensino/Gestao/Negocios)" value="Sim" required>
+                        <label for="natureza2_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza2_nao" name="Natureza da Ideia - Metodologia (Ensino/Gestao/Negocios)" value="Não">
+                        <label for="natureza2_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Sua ideia é puramente software (sem aplicação técnica ou física específica)?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza3_sim" name="Natureza da Ideia - Puramente Software" value="Sim" required>
+                        <label for="natureza3_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="natureza3_nao" name="Natureza da Ideia - Puramente Software" value="Não">
+                        <label for="natureza3_nao">Não</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-divider mb-8">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="info-icon">?</span> Critérios de Patenteabilidade
+                </h3>
+                <div class="mb-4 text-left">
+                    <p class="mb-2">A ideia resolve um problema técnico com uma solução técnica (ex: dispositivo, sistema físico, mecanismo)?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio1_sim" name="Criterios de Patenteabilidade - Resolve Problema Tecnico" value="Sim" required>
+                        <label for="criterio1_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio1_nao" name="Criterios de Patenteabilidade - Resolve Problema Tecnico" value="Não">
+                        <label for="criterio1_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">A solução é nova (não existe algo igual já divulgado ou patenteado)?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio2_sim" name="Criterios de Patenteabilidade - Nova" value="Sim" required>
+                        <label for="criterio2_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio2_nao" name="Criterios de Patenteabilidade - Nova" value="Não">
+                        <label for="criterio2_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">A solução é inventiva (não é óbvia para um técnico no assunto)?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio3_sim" name="Criterios de Patenteabilidade - Inventiva" value="Sim" required>
+                        <label for="criterio3_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio3_nao" name="Criterios de Patenteabilidade - Inventiva" value="Não">
+                        <label for="criterio3_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Tem aplicação industrial (pode ser fabricada, usada ou aplicada em setor produtivo)?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio4_sim" name="Criterios de Patenteabilidade - Aplicacao Industrial" value="Sim" required>
+                        <label for="criterio4_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="criterio4_nao" name="Criterios de Patenteabilidade - Aplicacao Industrial" value="Não">
+                        <label for="criterio4_nao">Não</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-divider mb-8">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="info-icon">?</span> Perguntas Adicionais
+                </h3>
+                <div class="mb-4 text-left">
+                    <p class="mb-2">A ideia já foi divulgada publicamente? (ex: redes sociais, eventos, artigos)</p>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional1_sim" name="Perguntas Adicionais - Divulgada Publicamente" value="Sim" required>
+                        <label for="adicional1_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional1_nao" name="Perguntas Adicionais - Divulgada Publicamente" value="Não">
+                        <label for="adicional1_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Há intenção de comercializar ou licenciar essa ideia?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional2_sim" name="Perguntas Adicionais - Intencao Comercializar" value="Sim" required>
+                        <label for="adicional2_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional2_nao" name="Perguntas Adicionais - Intencao Comercializar" value="Não">
+                        <label for="adicional2_nao">Não</label>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-left">
+                    <p class="mb-2">Você já desenvolveu um protótipo ou MVP da solução?</p>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional3_sim" name="Perguntas Adicionais - Prototipo/MVP Desenvolvido" value="Sim" required>
+                        <label for="adicional3_sim">Sim</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="adicional3_nao" name="Perguntas Adicionais - Prototipo/MVP Desenvolvido" value="Não">
+                        <label for="adicional3_nao">Não</label>
+                    </div>
+                </div>
+            </section>
+
+            <div class="nav-buttons">
+                <button type="button" class="btn-base btn-back" onclick="window.location.href='index.html'">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Voltar
+                </button>
+                <button type="submit" id="nextPage2Button" class="btn-base" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Próxima Página
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        const questionnaireForm = document.getElementById('questionnaireForm');
+        const nextPage2Button = document.getElementById('nextPage2Button');
+
+        function checkAllRadioGroupsAnswered() {
+            const radioGroups = [
+                'Natureza da Ideia - Algoritmo/Metodo Matematico',
+                'Natureza da Ideia - Metodologia (Ensino/Gestao/Negocios)',
+                'Natureza da Ideia - Puramente Software',
+                'Criterios de Patenteabilidade - Resolve Problema Tecnico',
+                'Criterios de Patenteabilidade - Nova',
+                'Criterios de Patenteabilidade - Inventiva',
+                'Criterios de Patenteabilidade - Aplicacao Industrial',
+                'Perguntas Adicionais - Divulgada Publicamente',
+                'Perguntas Adicionais - Intencao Comercializar',
+                'Perguntas Adicionais - Prototipo/MVP Desenvolvido'
+            ];
+            let allAnswered = true;
+            radioGroups.forEach(groupName => {
+                const radios = questionnaireForm.querySelectorAll(`input[name="${groupName}"]`);
+                const isGroupAnswered = Array.from(radios).some(radio => radio.checked);
+                if (!isGroupAnswered) {
+                    allAnswered = false;
+                }
+            });
+            return allAnswered;
+        }
+
+        function updateNextPage2ButtonState() {
+            nextPage2Button.disabled = !checkAllRadioGroupsAnswered();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateForm(questionnaireForm, "Questionario Rapido");
+            updateNextPage2ButtonState(); // Set initial state
+        });
+
+        questionnaireForm.addEventListener('change', updateNextPage2ButtonState);
+        questionnaireForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            collectFormData(this, "Questionario Rapido");
+            window.location.href = 'detalhes_ideia.html';
+        });
+    </script>
+</body>
+</html>

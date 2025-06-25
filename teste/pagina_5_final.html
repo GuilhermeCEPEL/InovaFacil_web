@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado por participar do InovaFácil!</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #2b8c5a, #20417f);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .main-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .download-button {
+            background-color: white;
+            color: #20417f; /* Dark blue */
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            margin-top: 2rem;
+            font-size: 1.125rem;
+        }
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .nav-buttons-final {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px; /* Align with container */
+        }
+        .btn-nav {
+            background-color: white;
+            color: #20417f;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .btn-back {
+            color: #2b8c5a; /* Green for back button */
+        }
+        .btn-restart {
+            color: #2b8c5a; /* Green for restart button */
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Obrigado por participar do InovaFácil!</h1>
+        <p class="text-lg text-white opacity-80">Esperamos que tenha encontrado informações úteis para proteger e desenvolver sua ideia.</p>
+    </header>
+
+    <main class="container">
+        <!-- Placeholder for the image. In a real scenario, you'd host this image. -->
+        <img src="https://placehold.co/800x400/2b8c5a/ffffff?text=Sua+Imagem+Aqui" alt="Imagem de agradecimento" class="main-image" onerror="this.onerror=null; this.src='https://placehold.co/800x400/2b8c5a/ffffff?text=Imagem+Nao+Encontrada';">
+        <p class="text-sm text-gray-300">
+                    </p>
+
+        <hr class="w-full border-t border-gray-400 opacity-50 my-8">
+
+        <h2 class="text-2xl font-semibold mb-4">Resultados e Relatório</h2>
+        <p class="text-white opacity-80 mb-6">Você pode baixar um resumo completo das informações fornecidas e análises geradas.</p>
+
+        <button id="downloadCsvButton" class="download-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-9.707a1 1 0 011.414 0L10 9.586l1.293-1.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            Baixar Formulário Completo (CSV)
+        </button>
+    </main>
+
+    <div class="nav-buttons-final">
+        <button type="button" class="btn-nav btn-back" onclick="window.history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            Voltar para a página anterior
+        </button>
+        <button type="button" class="btn-nav btn-restart" onclick="window.location.href = 'index.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.293l.293-.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414l.293.293V3a1 1 0 011-1zM16 18a1 1 0 00-1-1v-2.293l-.293.293a1 1 0 00-1.414-1.414l2-2a1 1 0 001.414 0l2 2a1 1 0 00-1.414 1.414l-.293-.293V17a1 1 0 001 1z" clip-rule="evenodd" />
+                <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" />
+            </svg>
+            Recomeçar o Questionário
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('downloadCsvButton').addEventListener('click', () => {
+            // Simulate collecting data from all pages. In a real application, you would
+            // fetch this data from a backend or persistent storage (like Firestore).
+            const data = {
+                "Informacoes Pessoais": {
+                    "Nome Completo": "Nome Exemplo",
+                    "Matricula": "1234567",
+                    "Email": "exemplo@email.com"
+                },
+                "Questionario Rapido": {
+                    "Natureza da Ideia - Algoritmo/Metodo Matematico": "Sim",
+                    "Natureza da Ideia - Metodologia (Ensino/Gestao/Negocios)": "Não",
+                    "Natureza da Ideia - Puramente Software": "Sim",
+                    "Criterios de Patenteabilidade - Resolve Problema Tecnico": "Sim",
+                    "Criterios de Patenteabilidade - Nova": "Sim",
+                    "Criterios de Patenteabilidade - Inventiva": "Não",
+                    "Criterios de Patenteabilidade - Aplicacao Industrial": "Sim",
+                    "Perguntas Adicionais - Divulgada Publicamente": "Não",
+                    "Perguntas Adicionais - Intencao Comercializar": "Sim",
+                    "Perguntas Adicionais - Prototipo/MVP Desenvolvido": "Sim"
+                },
+                "Detalhes da Ideia": {
+                    "Descricao da Ideia": "Exemplo de descrição detalhada da ideia de irrigação inteligente com aprendizado adaptativo.",
+                    "Diferencial ou Inovacao": "Aprende o comportamento hídrico da planta e se adapta ao microclima, baixo custo, portabilidade.",
+                    "Desenvolvimento Existente": "Sim, um protótipo inicial foi desenvolvido.",
+                    "Setor de Aplicacao": "Agricultura doméstica, jardinagem."
+                },
+                "Avaliacao do Potencial de Protecao": {
+                    "Score Geral": "7.7/10",
+                    "Inovacao": "8.0/10",
+                    "Originalidade": "7.0/10",
+                    "Potencial de Propriedade Intelectual": "8.0/10",
+                    "Tipo de Protecao Sugerida": document.getElementById('protectionType') ? document.getElementById('protectionType').value : 'Não Selecionado' // Attempt to get the value from the previous page if available
+                }
+            };
+
+            let csvContent = "";
+
+            // Add personal info
+            csvContent += "Secao,Campo,Valor\n";
+            for (const section in data) {
+                for (const field in data[section]) {
+                    csvContent += `"${section}","${field}","${data[section][field]}"\n`;
+                }
+            }
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'formulario_inova_facil.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Formulário completo baixado como formulario_inova_facil.csv!');
+        });
+    </script>
+</body>
+</html>

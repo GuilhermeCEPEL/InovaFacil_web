@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InovaFácil - Avaliação do Potencial de Proteção</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Avaliação do Potencial de Proteção</h1>
+    </header>
+
+    <main class="container">
+        <p class="analysis-text">
+            <span class="text-green-300">✔ 7.7/10</span> – *A ideia apresenta uma boa inovação na personalização, mas o conceito geral de monitoramento e irrigação inteligente já possui soluções similares no mercado.*
+        </p>
+
+        <div class="mb-4 text-left">
+            <h3 class="text-xl font-semibold mb-2">Inovação: <span class="text-green-300">✔ 8.0/10</span></h3>
+            <p class="text-white opacity-80">A inteligência adaptativa que aprende o comportamento hídrico individual da planta e se ajusta ao microclima é um diferencial inovador significativo em relação a soluções mais genéricas.</p>
+        </div>
+
+        <div class="mb-4 text-left">
+            <h3 class="text-xl font-semibold mb-2">Originalidade: <span class="text-green-300">✔ 7.0/10</span></h3>
+            <p class="text-white opacity-80">Embora existam muitos sistemas de irrigação inteligente, a combinação de baixo custo, portabilidade para o consumidor doméstico e, principalmente, a capacidade de aprender o comportamento hídrico de cada planta, confere à ideia um grau notável de originalidade, diferenciando-a das PIs encontradas.</p>
+        </div>
+
+        <div class="mb-6 text-left">
+            <h3 class="text-xl font-semibold mb-2">Potencial de Propriedade Intelectual: <span class="text-green-300">✔ 8.0/10</span></h3>
+            <p class="text-white opacity-80">O método de aprendizado adaptativo do comportamento hídrico da planta e do microclima é um forte candidato para proteção por patente. Além disso, o aplicativo pode ser registrado como software e o nome do produto como marca, conferindo um bom potencial de proteção.</p>
+        </div>
+
+        <div class="flex justify-center mb-6">
+            <button class="btn-base btn-green" id="reprocessAnalysis">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.293l.293-.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414l.293.293V3a1 1 0 011-1zM16 18a1 1 0 00-1-1v-2.293l-.293.293a1 1 0 00-1.414-1.414l2-2a1 1 0 001.414 0l2 2a1 1 0 00-1.414 1.414l-.293-.293V17a1 1 0 001 1z" clip-rule="evenodd" />
+                </svg>
+                Reprocessar Análise
+            </button>
+        </div>
+        
+        <div class="expander" id="similarPropertiesExpander">
+            <div class="expander-header">
+                <span>Propriedades intelectuais Similares Encontradas</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p id="similarPropertiesContent">Nenhum texto de backend gerado ainda.</p>
+                <button class="button-expander" id="generateSimilarProperties">
+                    Gerar Análise de Similaridade
+                </button>
+            </div>
+        </div>
+
+        <div class="expander" id="finalAnalysisExpander">
+            <div class="expander-header">
+                <span>Análise Final e Recomendações Estratégicas</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p id="finalAnalysisContent">Nenhum texto de backend gerado ainda.</p>
+                <button class="button-expander" id="generateFinalAnalysis">
+                    Gerar Análise Final
+                </button>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">O que você deseja proteger?</h2>
+        <p class="text-white opacity-80 mb-6">Com base na análise, selecione a categoria de proteção mais adequada para sua ideia.</p>
+
+        <div class="select-wrapper">
+            <select id="protectionType" name="Tipo de Protecao Sugerida" class="w-full">
+                <option value="">Selecione uma opção</option>
+                <option value="Patente de Invenção (PI)">Patente de Invenção (PI)</option>
+                <option value="Modelo de Utilidade (MU)">Modelo de Utilidade (MU)</option>
+                <option value="Programa de Computador (Software)">Programa de Computador (Software)</option>
+            </select>
+        </div>
+        
+        <p id="selectMessage" class="select-message hidden">Por favor, selecione uma opção para gerar os próximos passos.</p>
+
+        <button class="btn-base btn-green generate-steps-button" id="generateDetailedStepsButton" disabled>
+            Gerar Próximos Passos Detalhados
+        </button>
+
+        <div class="expander generated-steps-expander hidden" id="detailedStepsExpander">
+            <div class="expander-header">
+                <span>Guia Detalhado para Proteção</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p id="detailedStepsContent">Próximos passos gerados com sucesso!</p>
+            </div>
+        </div>
+
+        <section class="report-section hidden" id="inpiReportSection">
+            <h3 class="report-header">
+                Relatório INPI Provisório
+            </h3>
+            <p class="text-white opacity-80 mb-4">
+                Clique no botão abaixo para gerar um relatório provisório com as informações coletadas e análises realizadas. Este relatório pode ser usado como base para o envio ao INPI.
+            </p>
+            <button class="btn-base generate-report-button" id="generateInpiReportButton">
+                Gerar Relatório INPI Agora
+            </button>
+
+            <div class="expander generated-steps-expander hidden" id="inpiReportExpander">
+                <div class="expander-header">
+                    <span>Visualizar Relatório INPI Gerado</span>
+                    <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="expander-content">
+                    <pre id="inpiReportContent" class="bg-gray-100 p-4 rounded-lg text-black overflow-x-auto">Conteúdo do Relatório INPI será exibido aqui.</pre>
+                </div>
+            </div>
+
+            <button class="btn-base btn-green download-button hidden" id="downloadReportButton">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-9.707a1 1 0 011.414 0L10 9.586l1.293-1.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                Baixar Relatório INPI (TXT)
+            </button>
+        </section>
+
+        <div class="nav-buttons">
+            <button type="button" class="btn-base btn-back" onclick="window.location.href='detalhes_ideia.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Voltar para Descrição da Ideia
+            </button>
+            <button type="button" class="btn-base" id="finishAndSubmitButton">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+                Finalizar e Enviar Respostas
+            </button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Get elements for expanders
+        const similarPropertiesExpander = document.getElementById('similarPropertiesExpander');
+        const finalAnalysisExpander = document.getElementById('finalAnalysisExpander');
+        const detailedStepsExpander = document.getElementById('detailedStepsExpander');
+        const inpiReportExpander = document.getElementById('inpiReportExpander');
+
+        // Get content paragraphs within expanders
+        const similarPropertiesContent = document.getElementById('similarPropertiesContent');
+        const finalAnalysisContent = document.getElementById('finalAnalysisContent');
+        const detailedStepsContent = document.getElementById('detailedStepsContent');
+        const inpiReportContent = document.getElementById('inpiReportContent');
+
+        // Get buttons for expanders
+        const generateSimilarPropertiesButton = document.getElementById('generateSimilarProperties');
+        const generateFinalAnalysisButton = document.getElementById('generateFinalAnalysis');
+        const reprocessAnalysisButton = document.getElementById('reprocessAnalysis');
+
+        // Get elements for protection type selection
+        const protectionTypeSelect = document.getElementById('protectionType');
+        const selectMessage = document.getElementById('selectMessage');
+        const generateDetailedStepsButton = document.getElementById('generateDetailedStepsButton');
+
+        // Get elements for INPI report
+        const inpiReportSection = document.getElementById('inpiReportSection');
+        const generateInpiReportButton = document.getElementById('generateInpiReportButton');
+        const downloadReportButton = document.getElementById('downloadReportButton');
+
+        // Get final navigation buttons
+        const finishAndSubmitButton = document.getElementById('finishAndSubmitButton');
+
+        // Add event listeners for expander headers
+        similarPropertiesExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander(similarPropertiesExpander));
+        finalAnalysisExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander(finalAnalysisExpander));
+        detailedStepsExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander(detailedStepsExpander));
+        inpiReportExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander(inpiReportExpander));
+
+        // Simulate "Reprocessar Análise" button click
+        reprocessAnalysisButton.addEventListener('click', () => {
+            alert('Análise reprocessada! (Funcionalidade simulada)');
+            // Here you would typically trigger a backend call to re-evaluate and update the initial analysis text
+            // For now, we just show an alert.
+        });
+
+        // Simulate "Gerar Análise de Similaridade" button click
+        generateSimilarPropertiesButton.addEventListener('click', () => {
+            const prompt = "Gere um texto de exemplo para 'Propriedades intelectuais Similares Encontradas'. Seja conciso e liste algumas áreas hipotéticas.";
+            generateTextFromBackend(prompt, similarPropertiesContent);
+        });
+
+        // Simulate "Gerar Análise Final" button click
+        generateFinalAnalysisButton.addEventListener('click', () => {
+            const prompt = "Gere um texto de exemplo para 'Análise Final e Recomendações Estratégicas'. Seja conciso e ofereça conselhos hipotéticos para uma ideia inovadora.";
+            generateTextFromBackend(prompt, finalAnalysisContent);
+        });
+
+        // Event listener for dropdown change
+        protectionTypeSelect.addEventListener('change', () => {
+            if (protectionTypeSelect.value !== '') {
+                generateDetailedStepsButton.disabled = false;
+                selectMessage.classList.add('hidden');
+                // Store the selected value in formData
+                if (!formData["Avaliacao do Potencial de Protecao"]) {
+                    formData["Avaliacao do Potencial de Protecao"] = {};
+                }
+                formData["Avaliacao do Potencial de Protecao"]["Tipo de Protecao Sugerida"] = protectionTypeSelect.value;
+                saveFormData();
+            } else {
+                generateDetailedStepsButton.disabled = true;
+                selectMessage.classList.remove('hidden');
+                if (formData["Avaliacao do Potencial de Protecao"]) {
+                    delete formData["Avaliacao do Potencial de Protecao"]["Tipo de Protecao Sugerida"];
+                    saveFormData();
+                }
+            }
+            // Hide detailed steps and report sections if selection changes
+            detailedStepsExpander.classList.add('hidden');
+            detailedStepsExpander.classList.remove('open');
+            inpiReportSection.classList.add('hidden');
+            inpiReportExpander.classList.add('hidden');
+            inpiReportExpander.classList.remove('open');
+            downloadReportButton.classList.add('hidden');
+            generateInpiReportButton.disabled = false; // Enable report generation button
+        });
+
+        // Event listener for "Gerar Próximos Passos Detalhados" button
+        generateDetailedStepsButton.addEventListener('click', async () => {
+            const selectedType = protectionTypeSelect.value;
+            const prompt = `Gere próximos passos detalhados para proteger uma ideia inovadora sob a categoria de "${selectedType}". Forneça um guia claro e conciso.`;
+            await generateTextFromBackend(prompt, detailedStepsContent, 'Gerando próximos passos detalhados...');
+            detailedStepsExpander.classList.remove('hidden'); // Show the expander
+            detailedStepsExpander.classList.add('open'); // Open it automatically
+            inpiReportSection.classList.remove('hidden'); // Show INPI report section
+        });
+
+        // Event listener for "Gerar Relatório INPI Agora" button
+        generateInpiReportButton.addEventListener('click', async () => {
+            const prompt = "Gere um texto de relatório INPI provisório para uma ideia inovadora. Inclua seções como Resumo, Descrição da Ideia, Reivindicações, e Conclusão. Use um formato de relatório com cabeçalhos claros e informações fictícias, mas realistas.";
+            await generateTextFromBackend(prompt, inpiReportContent, 'Gerando Relatório INPI...');
+            inpiReportExpander.classList.remove('hidden'); // Show the expander
+            inpiReportExpander.classList.add('open'); // Open it automatically
+            downloadReportButton.classList.remove('hidden'); // Show download button
+            generateInpiReportButton.disabled = true; // Disable until re-enabled
+        });
+
+        // Event listener for "Baixar Relatório INPI (TXT)" button
+        downloadReportButton.addEventListener('click', () => {
+            const reportContent = inpiReportContent.textContent;
+            const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'relatorio_inpi.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Relatório INPI baixado como relatorio_inpi.txt!');
+        });
+
+        // Event listener for "Finalizar e Enviar Respostas" button
+        finishAndSubmitButton.addEventListener('click', () => {
+            // Collect the last piece of data (protection type) before navigating
+            if (protectionTypeSelect.value !== '') {
+                if (!formData["Avaliacao do Potencial de Protecao"]) {
+                    formData["Avaliacao do Potencial de Protecao"] = {};
+                }
+                formData["Avaliacao do Potencial de Protecao"]["Tipo de Protecao Sugerida"] = protectionTypeSelect.value;
+            } else {
+                 // If not selected, remove the field
+                if (formData["Avaliacao do Potencial de Protecao"]) {
+                    delete formData["Avaliacao do Potencial de Protecao"]["Tipo de Protecao Sugerida"];
+                }
+            }
+            saveFormData(); // Ensure all data is saved
+            window.location.href = 'finalizacao.html'; 
+        });
+
+        // Initial state check on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load previously saved protection type
+            populateForm(document, "Avaliacao do Potencial de Protecao");
+
+            // Initially hide the select message, detailed steps expander, and INPI report section
+            selectMessage.classList.remove('hidden'); 
+            generateDetailedStepsButton.disabled = true;
+            detailedStepsExpander.classList.add('hidden');
+            inpiReportSection.classList.add('hidden');
+            inpiReportExpander.classList.add('hidden');
+            downloadReportButton.classList.add('hidden');
+
+            // Re-enable generate detailed steps button if a protection type was already selected
+            if (protectionTypeSelect.value !== '') {
+                generateDetailedStepsButton.disabled = false;
+                selectMessage.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

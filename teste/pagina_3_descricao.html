@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descreva Sua Ideia</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #2b8c5a, #20417f);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 2rem;
+        }
+        .expander {
+            background-color: white;
+            color: #20417f;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .expander-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .expander-header:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .expander-content {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none; /* Escondido por padrão */
+            color: #333;
+        }
+        .expander.open .expander-content {
+            display: block; /* Mostrado quando 'open' */
+        }
+        .arrow-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .expander.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+        .button-expander {
+            background-color: #20417f; /* Azul escuro para o botão */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .button-expander:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .textarea-field {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            border: none;
+            outline: none;
+            min-height: 100px; /* Altura mínima para a área de texto */
+            resize: vertical; /* Permite redimensionar verticalmente */
+        }
+        .textarea-field:focus {
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        .label-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .info-icon {
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            line-height: 1;
+        }
+        .btn-nav {
+            background-color: white;
+            color: #20417f;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .btn-nav:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-back {
+            color: #2b8c5a;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Descreva Sua Ideia Detalhadamente</h1>
+    </header>
+
+    <main class="container">
+        <!-- Expansor para a recomendação -->
+        <div class="expander" id="recommendationExpander">
+            <div class="expander-header">
+                <span>Veja a Recomendação inicial sobre sua Ideia 💡</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p>Aqui virá o texto gerado pelo backend. Por exemplo: "Sua ideia de um novo aplicativo de entrega de alimentos com drones tem potencial, mas precisa de detalhes sobre a infraestrutura de drones e regulamentação. Considere como ela se diferencia de serviços existentes e qual impacto social ela teria."</p>
+                <button class="button-expander" id="generateNewRecommendation">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    Gerar nova recomendação
+                </button>
+            </div>
+        </div>
+
+        <p class="text-white opacity-80 mb-6">Forneça o máximo de detalhes possível nos campos abaixo para uma análise mais precisa. Campos com <span class="text-red-400">*</span> são obrigatórios.</p>
+
+        <form id="ideaDetailsForm">
+            <div class="mb-4">
+                <label for="descricao" class="label-with-icon">
+                    <span class="info-icon">?</span> Descrição da sua ideia ou invenção (o que é, para que serve, como funciona)?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="descricao" name="descricao" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="diferencial" class="label-with-icon">
+                    <span class="info-icon">?</span> Qual é o diferencial ou inovação da sua ideia?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="diferencial" name="diferencial" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="desenvolvimento" class="label-with-icon">
+                    <span class="info-icon">?</span> Você já desenvolveu algo relacionado a essa ideia? (protótipo, código, apresentação, etc.)<span class="text-red-400">*</span>
+                </label>
+                <textarea id="desenvolvimento" name="desenvolvimento" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-6">
+                <label for="setor_aplicacao" class="label-with-icon">
+                    <span class="info-icon">?</span> Qual é o setor de aplicação da sua ideia?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="setor_aplicacao" name="setor_aplicacao" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="text-center mt-8 flex justify-between w-full">
+                <button type="button" id="backButton" class="btn-nav btn-back" onclick="window.history.back()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Voltar
+                </button>
+                <button type="submit" id="nextStepsButton" class="btn-nav" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Próximos Passos
+                </button>
+<script>
+    ideaDetailsForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (checkAllTextareasFilled()) {
+            window.location.href = "pagina_4_resultados.html";
+        } else {
+            console.log('Por favor, preencha todos os campos obrigatórios.');
+        }
+    });
+</script>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const recommendationExpander = document.getElementById('recommendationExpander');
+        const expanderHeader = recommendationExpander.querySelector('.expander-header');
+        const ideaDetailsForm = document.getElementById('ideaDetailsForm');
+        const nextStepsButton = document.getElementById('nextStepsButton');
+        const generateNewRecommendationButton = document.getElementById('generateNewRecommendation');
+
+        // Função para alternar o expansor
+        expanderHeader.addEventListener('click', () => {
+            recommendationExpander.classList.toggle('open');
+        });
+
+        // Função para simular a geração de nova recomendação (sem backend)
+        generateNewRecommendationButton.addEventListener('click', async () => {
+            const recommendationContent = recommendationExpander.querySelector('.expander-content p');
+            recommendationContent.textContent = 'Gerando nova recomendação...'; // Mensagem de carregamento
+
+            // Simula uma chamada de API
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const prompt = "Gere uma breve recomendação para uma ideia inovadora. A recomendação deve ser construtiva e sugerir próximos passos. Mantenha-a concisa (2-3 frases).";
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    recommendationContent.textContent = text; // Atualiza com a recomendação gerada
+                } else {
+                    recommendationContent.textContent = 'Não foi possível gerar uma nova recomendação no momento. Tente novamente.';
+                }
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini:', error);
+                recommendationContent.textContent = 'Erro ao gerar recomendação. Por favor, tente novamente.';
+            }
+        });
+
+
+        // Função para verificar se todos os campos de texto obrigatórios estão preenchidos
+        function checkAllTextareasFilled() {
+            const requiredTextareas = ideaDetailsForm.querySelectorAll('textarea[required]');
+            let allFilled = true;
+            requiredTextareas.forEach(textarea => {
+                if (textarea.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+            return allFilled;
+        }
+
+        // Função para atualizar o estado do botão "Próximos Passos"
+        function updateNextStepsButtonState() {
+            if (checkAllTextareasFilled()) {
+                nextStepsButton.disabled = false;
+            } else {
+                nextStepsButton.disabled = true;
+            }
+        }
+
+        // Adiciona um listener para cada mudança nos campos de texto
+        ideaDetailsForm.addEventListener('input', updateNextStepsButtonState);
+
+        // Chama a função uma vez ao carregar a página para definir o estado inicial do botão
+        document.addEventListener('DOMContentLoaded', updateNextStepsButtonState);
+
+        // Adiciona um evento de submit ao formulário
+        ideaDetailsForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (checkAllTextareasFilled()) {
+                console.log('Todos os campos preenchidos! Prosseguindo para os próximos passos.');
+                // Adicione a lógica de redirecionamento ou processamento aqui
+            } else {
+                console.log('Por favor, preencha todos os campos obrigatórios.');
+            }
+        });
+    </script>
+</body>
+</html>

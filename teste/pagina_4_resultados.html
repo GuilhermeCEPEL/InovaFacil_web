@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação do Potencial de Proteção</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #2b8c5a, #20417f);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 900px; /* Increased max-width for better content display */
+            margin-top: 2rem;
+        }
+        .analysis-text {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .expander {
+            background-color: white;
+            color: #20417f;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .expander-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .expander-header:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .expander-content {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+            color: #333;
+        }
+        .expander.open .expander-content {
+            display: block; /* Shown when 'open' */
+        }
+        .arrow-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .expander.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+        .button-expander {
+            background-color: #20417f; /* Dark blue for the button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .button-expander:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .button-expander:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .reprocess-button {
+            background-color: white;
+            color: #2b8c5a; /* Green for reprocess button */
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+        .reprocess-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .select-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .select-wrapper select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            color: #333;
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 0.75rem;
+            color: #666;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .select-message {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        .generate-steps-button {
+            background-color: white;
+            color: #2b8c5a; /* Green for generate steps button */
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            width: fit-content;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .generate-steps-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .generate-steps-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .generated-steps-expander {
+            margin-top: 2rem;
+        }
+        .report-section {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+        .report-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .generate-report-button {
+            background-color: white;
+            color: #20417f;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            width: fit-content;
+            margin-bottom: 2rem;
+        }
+        .generate-report-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .generate-report-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .download-button {
+            background-color: #2b8c5a; /* Green for download button */
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            width: fit-content;
+            margin-top: 1rem;
+        }
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .nav-buttons-final {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Avaliação do Potencial de Proteção</h1>
+    </header>
+
+    <main class="container">
+        <p class="analysis-text">
+            <span class="text-green-300">✔ 7.7/10</span> – *A ideia apresenta uma boa inovação na personalização, mas o conceito geral de monitoramento e irrigação inteligente já possui soluções similares no mercado.*
+        </p>
+
+        <div class="mb-4">
+            <h3 class="text-xl font-semibold mb-2">Inovação: <span class="text-green-300">✔ 8.0/10</span></h3>
+            <p class="text-white opacity-80">A inteligência adaptativa que aprende o comportamento hídrico individual da planta e se ajusta ao microclima é um diferencial inovador significativo em relação a soluções mais genéricas.</p>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="text-xl font-semibold mb-2">Originalidade: <span class="text-green-300">✔ 7.0/10</span></h3>
+            <p class="text-white opacity-80">Embora existam muitos sistemas de irrigação inteligente, a combinação de baixo custo, portabilidade para o consumidor doméstico e, principalmente, a capacidade de aprender o comportamento hídrico de cada planta, confere à ideia um grau notável de originalidade, diferenciando-a das PIs encontradas.</p>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Potencial de Propriedade Intelectual: <span class="text-green-300">✔ 8.0/10</span></h3>
+            <p class="text-white opacity-80">O método de aprendizado adaptativo do comportamento hídrico da planta e do microclima é um forte candidato para proteção por patente. Além disso, o aplicativo pode ser registrado como software e o nome do produto como marca, conferindo um bom potencial de proteção.</p>
+        </div>
+
+        <div class="flex justify-center mb-6">
+            <button class="reprocess-button" id="reprocessAnalysis">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.293l.293-.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414l.293.293V3a1 1 0 011-1zM16 18a1 1 0 00-1-1v-2.293l-.293.293a1 1 0 00-1.414-1.414l2-2a1 1 0 001.414 0l2 2a1 1 0 00-1.414 1.414l-.293-.293V17a1 1 0 001 1z" clip-rule="evenodd" />
+                </svg>
+                Reprocessar Análise
+            </button>
+        </div>
+        
+        <!-- Expander 1: Propriedades intelectuais Similares Encontradas -->
+        <div class="expander" id="similarPropertiesExpander">
+            <div class="expander-header">
+                <span>Propriedades intelectuais Similares Encontradas</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p>Nenhum texto de backend gerado ainda.</p>
+                <button class="button-expander" id="generateSimilarProperties">
+                    Gerar Análise de Similaridade
+                </button>
+            </div>
+        </div>
+
+        <!-- Expander 2: Análise Final e Recomendações Estratégicas -->
+        <div class="expander" id="finalAnalysisExpander">
+            <div class="expander-header">
+                <span>Análise Final e Recomendações Estratégicas</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p>Nenhum texto de backend gerado ainda.</p>
+                <button class="button-expander" id="generateFinalAnalysis">
+                    Gerar Análise Final
+                </button>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">O que você deseja proteger?</h2>
+        <p class="text-white opacity-80 mb-6">Com base na análise, selecione a categoria de proteção mais adequada para sua ideia.</p>
+
+        <div class="select-wrapper">
+            <select id="protectionType" class="w-full">
+                <option value="">Selecione uma opção</option>
+                <option value="Patente de Invenção (PI)">Patente de Invenção (PI)</option>
+                <option value="Modelo de Utilidade (MU)">Modelo de Utilidade (MU)</option>
+                <option value="Programa de Computador (Software)">Programa de Computador (Software)</option>
+            </select>
+        </div>
+        
+        <p id="selectMessage" class="select-message hidden">Por favor, selecione uma opção para gerar os próximos passos.</p>
+
+        <button class="generate-steps-button" id="generateDetailedStepsButton" disabled>
+            Gerar Próximos Passos Detalhados
+        </button>
+
+        <!-- Expansor para os próximos passos detalhados (inicialmente oculto) -->
+        <div class="expander generated-steps-expander hidden" id="detailedStepsExpander">
+            <div class="expander-header">
+                <span>Guia Detalhado para Proteção</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p id="detailedStepsContent">Próximos passos gerados com sucesso!</p>
+            </div>
+        </div>
+
+        <section class="report-section hidden" id="inpiReportSection">
+            <h3 class="report-header">
+                Relatório INPI Provisório
+            </h3>
+            <p class="text-white opacity-80 mb-4">
+                Clique no botão abaixo para gerar um relatório provisório com as informações coletadas e análises realizadas. Este relatório pode ser usado como base para o envio ao INPI.
+            </p>
+            <button class="generate-report-button" id="generateInpiReportButton">
+                Gerar Relatório INPI Agora
+            </button>
+
+            <!-- Expansor para o relatório INPI gerado (inicialmente oculto) -->
+            <div class="expander generated-steps-expander hidden" id="inpiReportExpander">
+                <div class="expander-header">
+                    <span>Visualizar Relatório INPI Gerado</span>
+                    <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="expander-content">
+                    <pre id="inpiReportContent" class="bg-gray-100 p-4 rounded-lg text-black overflow-x-auto">Conteúdo do Relatório INPI será exibido aqui.</pre>
+                </div>
+            </div>
+
+            <button class="download-button hidden" id="downloadReportButton">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-9.707a1 1 0 011.414 0L10 9.586l1.293-1.293a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                Baixar Relatório INPI (TXT)
+            </button>
+        </section>
+
+        <div class="nav-buttons-final">
+            <button type="button" id="backButton" class="btn-nav btn-back" onclick="window.history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Voltar para Descrição da Ideia
+            </button>
+            <button type="button"  id="nextPageButton" class="btn-nav" id="finishAndSubmitButton">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+                Finalizar e Enviar Respostas
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Get elements for expanders
+        const similarPropertiesExpander = document.getElementById('similarPropertiesExpander');
+        const finalAnalysisExpander = document.getElementById('finalAnalysisExpander');
+        const detailedStepsExpander = document.getElementById('detailedStepsExpander');
+        const inpiReportExpander = document.getElementById('inpiReportExpander');
+
+        // Get content paragraphs within expanders
+        const similarPropertiesContent = similarPropertiesExpander.querySelector('.expander-content p');
+        const finalAnalysisContent = finalAnalysisExpander.querySelector('.expander-content p');
+        const detailedStepsContent = document.getElementById('detailedStepsContent');
+        const inpiReportContent = document.getElementById('inpiReportContent');
+
+        // Get buttons for expanders
+        const generateSimilarPropertiesButton = document.getElementById('generateSimilarProperties');
+        const generateFinalAnalysisButton = document.getElementById('generateFinalAnalysis');
+        const reprocessAnalysisButton = document.getElementById('reprocessAnalysis');
+
+        // Get elements for protection type selection
+        const protectionTypeSelect = document.getElementById('protectionType');
+        const selectMessage = document.getElementById('selectMessage');
+        const generateDetailedStepsButton = document.getElementById('generateDetailedStepsButton');
+
+        // Get elements for INPI report
+        const inpiReportSection = document.getElementById('inpiReportSection');
+        const generateInpiReportButton = document.getElementById('generateInpiReportButton');
+        const downloadReportButton = document.getElementById('downloadReportButton');
+
+        // Get final navigation buttons
+        const finishAndSubmitButton = document.getElementById('finishAndSubmitButton');
+
+        // Function to toggle expander visibility
+        function toggleExpander(expanderId) {
+            const expander = document.getElementById(expanderId);
+            expander.classList.toggle('open');
+        }
+
+        // Add event listeners for expander headers
+        similarPropertiesExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander('similarPropertiesExpander'));
+        finalAnalysisExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander('finalAnalysisExpander'));
+        detailedStepsExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander('detailedStepsExpander'));
+        inpiReportExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander('inpiReportExpander'));
+
+        // Function to simulate backend text generation using Gemini API
+        async function generateTextFromBackend(prompt, targetElement, loadingMessage = 'Gerando texto...') {
+            targetElement.textContent = loadingMessage;
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    targetElement.textContent = text;
+                } else {
+                    targetElement.textContent = 'Não foi possível gerar o conteúdo no momento. Tente novamente.';
+                }
+            } catch (error) {
+                console.error('Erro ao chamar a API Gemini:', error);
+                targetElement.textContent = 'Erro ao gerar conteúdo. Por favor, tente novamente.';
+            }
+        }
+
+        // Simulate "Reprocessar Análise" button click
+        reprocessAnalysisButton.addEventListener('click', () => {
+            alert('Análise reprocessada! (Funcionalidade simulada)');
+            // Here you would typically trigger a backend call to re-evaluate and update the initial analysis text
+            // For now, we just show an alert.
+        });
+
+        // Simulate "Gerar Análise de Similaridade" button click
+        generateSimilarPropertiesButton.addEventListener('click', () => {
+            const prompt = "Gere um texto de exemplo para 'Propriedades intelectuais Similares Encontradas'. Seja conciso e liste algumas áreas hipotéticas.";
+            generateTextFromBackend(prompt, similarPropertiesContent);
+        });
+
+        // Simulate "Gerar Análise Final" button click
+        generateFinalAnalysisButton.addEventListener('click', () => {
+            const prompt = "Gere um texto de exemplo para 'Análise Final e Recomendações Estratégicas'. Seja conciso e ofereça conselhos hipotéticos para uma ideia inovadora.";
+            generateTextFromBackend(prompt, finalAnalysisContent);
+        });
+
+        // Event listener for dropdown change
+        protectionTypeSelect.addEventListener('change', () => {
+            if (protectionTypeSelect.value !== '') {
+                generateDetailedStepsButton.disabled = false;
+                selectMessage.classList.add('hidden');
+            } else {
+                generateDetailedStepsButton.disabled = true;
+                selectMessage.classList.remove('hidden');
+            }
+            // Hide detailed steps and report sections if selection changes
+            detailedStepsExpander.classList.add('hidden');
+            detailedStepsExpander.classList.remove('open');
+            inpiReportSection.classList.add('hidden');
+            inpiReportExpander.classList.add('hidden');
+            inpiReportExpander.classList.remove('open');
+            downloadReportButton.classList.add('hidden');
+            generateInpiReportButton.disabled = false; // Enable report generation button
+        });
+
+        // Event listener for "Gerar Próximos Passos Detalhados" button
+        generateDetailedStepsButton.addEventListener('click', () => {
+            const selectedType = protectionTypeSelect.value;
+            const prompt = `Gere próximos passos detalhados para proteger uma ideia inovadora sob a categoria de "${selectedType}". Forneça um guia claro e conciso.`;
+            generateTextFromBackend(prompt, detailedStepsContent, 'Gerando próximos passos detalhados...');
+            detailedStepsExpander.classList.remove('hidden'); // Show the expander
+            detailedStepsExpander.classList.add('open'); // Open it automatically
+            inpiReportSection.classList.remove('hidden'); // Show INPI report section
+        });
+
+        // Event listener for "Gerar Relatório INPI Agora" button
+        generateInpiReportButton.addEventListener('click', () => {
+            const prompt = "Gere um texto de relatório INPI provisório para uma ideia inovadora. Inclua seções como Resumo, Descrição da Ideia, Reivindicações, e Conclusão. Use um formato de relatório com cabeçalhos claros e informações fictícias, mas realistas.";
+            generateTextFromBackend(prompt, inpiReportContent, 'Gerando Relatório INPI...');
+            inpiReportExpander.classList.remove('hidden'); // Show the expander
+            inpiReportExpander.classList.add('open'); // Open it automatically
+            downloadReportButton.classList.remove('hidden'); // Show download button
+            generateInpiReportButton.disabled = true; // Disable until re-enabled
+        });
+
+        // Event listener for "Baixar Relatório INPI (TXT)" button
+        downloadReportButton.addEventListener('click', () => {
+            const reportContent = inpiReportContent.textContent;
+            const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'relatorio_inpi.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Relatório INPI baixado como relatorio_inpi.txt!');
+        });
+
+        // Event listener for "Finalizar e Enviar Respostas" button
+        finishAndSubmitButton.addEventListener('click', () => {
+            alert('Formulário finalizado e respostas enviadas! (Funcionalidade simulada)');
+            // Here you would typically process all collected data and submit it to a backend.
+            // For now, it just shows an alert.
+            // You could also redirect to a "Thank You" page or the initial page:
+            // window.location.href = 'index.html'; 
+        });
+
+        // Initial state check on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initially hide the select message, detailed steps expander, and INPI report section
+            selectMessage.classList.remove('hidden'); 
+            generateDetailedStepsButton.disabled = true;
+            detailedStepsExpander.classList.add('hidden');
+            inpiReportSection.classList.add('hidden');
+            inpiReportExpander.classList.add('hidden');
+            downloadReportButton.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

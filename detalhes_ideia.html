@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InovaFácil - Detalhes da Ideia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-2">Descreva Sua Ideia Detalhadamente</h1>
+    </header>
+
+    <main class="container">
+        <div class="expander" id="recommendationExpander">
+            <div class="expander-header">
+                <span>Veja a Recomendação inicial sobre sua Ideia 💡</span>
+                <svg class="arrow-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="expander-content">
+                <p id="recommendationContent">Aqui virá o texto gerado pelo backend. Por exemplo: "Sua ideia de um novo aplicativo de entrega de alimentos com drones tem potencial, mas precisa de detalhes sobre a infraestrutura de drones e regulamentação. Considere como ela se diferencia de serviços existentes e qual impacto social ela teria."</p>
+                <button class="button-expander" id="generateNewRecommendation">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    Gerar nova recomendação
+                </button>
+            </div>
+        </div>
+
+        <p class="text-white opacity-80 mb-6">Forneça o máximo de detalhes possível nos campos abaixo para uma análise mais precisa. Campos com <span class="text-red-400">*</span> são obrigatórios.</p>
+
+        <form id="ideaDetailsForm">
+            <div class="mb-4 text-left">
+                <label for="descricao" class="label-with-icon">
+                    <span class="info-icon">?</span> Descrição da sua ideia ou invenção (o que é, para que serve, como funciona)?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="descricao" name="Descricao da Ideia" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-4 text-left">
+                <label for="diferencial" class="label-with-icon">
+                    <span class="info-icon">?</span> Qual é o diferencial ou inovação da sua ideia?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="diferencial" name="Diferencial ou Inovacao" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-4 text-left">
+                <label for="desenvolvimento" class="label-with-icon">
+                    <span class="info-icon">?</span> Você já desenvolveu algo relacionado a essa ideia? (protótipo, código, apresentação, etc.)<span class="text-red-400">*</span>
+                </label>
+                <textarea id="desenvolvimento" name="Desenvolvimento Existente" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="mb-6 text-left">
+                <label for="setor_aplicacao" class="label-with-icon">
+                    <span class="info-icon">?</span> Qual é o setor de aplicação da sua ideia?<span class="text-red-400">*</span>
+                </label>
+                <textarea id="setor_aplicacao" name="Setor de Aplicacao" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="button" class="btn-base btn-back" onclick="window.location.href='questionario_rapido.html'">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Voltar
+                </button>
+                <button type="submit" id="nextPage3Button" class="btn-base" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Próximos Passos
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        const ideaDetailsForm = document.getElementById('ideaDetailsForm');
+        const nextPage3Button = document.getElementById('nextPage3Button');
+        const recommendationExpander = document.getElementById('recommendationExpander');
+        const generateNewRecommendationButton = document.getElementById('generateNewRecommendation');
+        const recommendationContent = document.getElementById('recommendationContent');
+
+        function checkAllTextareasFilled() {
+            const requiredTextareas = ideaDetailsForm.querySelectorAll('textarea[required]');
+            let allFilled = true;
+            requiredTextareas.forEach(textarea => {
+                if (textarea.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+            return allFilled;
+        }
+
+        function updateNextPage3ButtonState() {
+            nextPage3Button.disabled = !checkAllTextareasFilled();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateForm(ideaDetailsForm, "Detalhes da Ideia");
+            updateNextPage3ButtonState(); // Set initial state
+        });
+
+        ideaDetailsForm.addEventListener('input', updateNextPage3ButtonState);
+        ideaDetailsForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            collectFormData(this, "Detalhes da Ideia");
+            window.location.href = 'avaliacao_protecao.html';
+        });
+
+        // Expander logic for this page
+        recommendationExpander.querySelector('.expander-header').addEventListener('click', () => toggleExpander(recommendationExpander));
+
+        generateNewRecommendationButton.addEventListener('click', async () => {
+            const prompt = "Gere uma breve recomendação para uma ideia inovadora. A recomendação deve ser construtiva e sugerir próximos passos. Mantenha-a concisa (2-3 frases).";
+            await generateTextFromBackend(prompt, recommendationContent, 'Gerando nova recomendação...');
+        });
+    </script>
+</body>
+</html>

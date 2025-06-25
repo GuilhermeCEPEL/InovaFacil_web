@@ -1,0 +1,270 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #2b8c5a, #20417f);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem;
+    color: white;
+    transition: background 0.5s ease;
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 2rem;
+    text-align: center;
+}
+/* Common button styles */
+.btn-base {
+    background-color: white;
+    color: #20417f;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-base:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+.btn-base:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.btn-green {
+    color: #2b8c5a;
+}
+.btn-back {
+    color: #2b8c5a;
+}
+.btn-restart {
+    color: #2b8c5a;
+}
+
+/* Input and textarea styles */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23666666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.5rem;
+}
+
+/* Expander styles */
+.expander {
+    background-color: white;
+    color: #20417f;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.expander-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.expander-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.expander-content {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: none;
+    color: #333;
+    text-align: left; /* Ensure text within expander content is left-aligned */
+}
+.expander.open .expander-content {
+    display: block;
+}
+.arrow-icon {
+    transition: transform 0.3s ease-in-out;
+}
+.expander.open .arrow-icon {
+    transform: rotate(180deg);
+}
+.button-expander {
+    background-color: #20417f;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+.button-expander:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Information Icon */
+.info-icon {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+.label-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Radio button styles */
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+.radio-option input[type="radio"] {
+    margin-right: 0.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+.radio-option input[type="radio"]:checked {
+    background-color: white;
+    border-color: #20417f;
+}
+.radio-option input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #20417f;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.radio-option label {
+    font-size: 1rem;
+    color: white;
+    opacity: 0.9;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* Specific section dividers */
+.section-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+}
+
+/* Finalization Page Image */
+.main-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.nav-buttons {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px; /* Align with container */
+}
+
+/* Specific Page 4 styles */
+.analysis-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.report-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+.report-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.select-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+}
+.select-message {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
